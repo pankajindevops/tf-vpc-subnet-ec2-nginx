@@ -8,14 +8,18 @@ variable "AWS_REGION" {
 variable "PRIVATE_KEY_PATH" {
 
   // default = "london-region-key-pair"
-  default = "/home/pankajsharma/terraform/scripts/tf-vpc-subnet-ec2-nginx/key-pair"
+  // default = "/home/pankajsharma/terraform/scripts/tf-vpc-subnet-ec2-nginx/key-pair"
+  default = "~terraform/scripts/tf-vpc-subnet-ec2-nginx/key-pair"
+
 
 }
 
 variable "PUBLIC_KEY_PATH" {
 
   // default = "london-region-key-pair.pub"
-  default = "/home/pankajsharma/terraform/scripts/tf-vpc-subnet-ec2-nginx/key-pair.pub"
+  // default = "/home/pankajsharma/terraform/scripts/tf-vpc-subnet-ec2-nginx/key-pair.pub"
+  default = "~/terraform/scripts/tf-vpc-subnet-ec2-nginx/key-pair.pub"
+
 }
 
 variable "EC2_USER" {
@@ -31,3 +35,12 @@ variable "AMI" {
     us-east-1 = "ami-052efd3df9dad4825"
   }
 }
+
+variable "INSTANCE_TYPE" {
+  default = "t2.micro"
+}
+
+variable "INSTANCE_COUNT" {
+  default = 1  
+}
+
