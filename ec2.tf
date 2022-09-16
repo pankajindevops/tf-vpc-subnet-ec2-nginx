@@ -1,5 +1,5 @@
-
-resource "aws_instance" "ec2-instance-13-sep-2022" {
+# Create AWS EC2 Instance
+resource "aws_instance" "ec2-instance" {
 
   ami           = lookup(var.AMI, var.AWS_REGION)
   instance_type = "t2.micro"
@@ -27,6 +27,7 @@ resource "aws_instance" "ec2-instance-13-sep-2022" {
 
   }
 
+  # Make nginx.sh file into an Executable and Run the .sh file
   provisioner "remote-exec" {
 
     inline = [

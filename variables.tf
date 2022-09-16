@@ -1,3 +1,4 @@
+#File to Input the Variables that will be used across all .tf files
 
 variable "AWS_REGION" {
 
