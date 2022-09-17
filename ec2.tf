@@ -52,7 +52,7 @@ resource "aws_instance" "ec2-instance" {
 resource "aws_key_pair" "key-pair" {
 
   key_name   = "key-pair-01"
-  // public_key = file("${var.PUBLIC_KEY_PATH}")
 
-  public_key = file("${var.PUBLIC_KEY_PATH}")
+  // public_key = file("${var.PUBLIC_KEY_PATH}")
+  public_key = file(var.PUBLIC_KEY_PATH)
 }
