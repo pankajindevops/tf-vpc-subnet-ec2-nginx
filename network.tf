@@ -1,3 +1,4 @@
+
 # Create AWS Internet Gateway
 
 resource "aws_internet_gateway" "prod-igw" {

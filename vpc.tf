@@ -33,5 +33,5 @@ resource "aws_subnet" "prod-subnet-public-1" {
 
   map_public_ip_on_launch = "true"
 
-  availability_zone = "eu-west-2a"
+  availability_zone = "us-east-1a"
 }

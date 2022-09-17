@@ -2,7 +2,8 @@
 resource "aws_instance" "ec2-instance" {
 
   ami           = lookup(var.AMI, var.AWS_REGION)
-  instance_type = "t2.micro"
+  instance_type = var.INSTANCE_TYPE
+  count         = var.INSTANCE_COUNT
 
   # VPC
   subnet_id = aws_subnet.prod-subnet-public-1.id
@@ -11,7 +12,7 @@ resource "aws_instance" "ec2-instance" {
   vpc_security_group_ids = ["${aws_security_group.ssh-allowed.id}"]
 
   # the Public SSH Key
-    key_name = aws_key_pair.key-pair.id
+  key_name = aws_key_pair.key-pair.id
 
   # Output the Public IP of EC2 Instance to text file
   provisioner "local-exec" {
@@ -50,6 +51,6 @@ resource "aws_instance" "ec2-instance" {
 
 resource "aws_key_pair" "key-pair" {
 
-  key_name   = "key-pair"
+  key_name   = "key-pair-01"
   public_key = file("${var.PUBLIC_KEY_PATH}")
 }
