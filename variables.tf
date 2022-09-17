@@ -43,6 +43,6 @@ variable "INSTANCE_TYPE" {
 }
 
 variable "INSTANCE_COUNT" {
-  default = 2
+  default = 1
 }
 
