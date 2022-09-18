@@ -56,5 +56,6 @@ resource "aws_key_pair" "key-pair-01" {
 
   public_key = file("${var.PUBLIC_KEY_PATH}")
   // public_key = file("/home/pankajsharma/terraform/keys/key-pair-01.pub")
+  // public_key = "key-pair-01.pub"
 
 }
