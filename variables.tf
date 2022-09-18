@@ -11,7 +11,7 @@ variable "PRIVATE_KEY_PATH" {
   // default = "/home/pankajsharma/terraform/scripts/tf-vpc-subnet-ec2-nginx/key-pair"
   //default = "/home/pankajsharma/terraform/scripts/tf-vpc-subnet-ec2-nginx/key-pair"
 
-  default = "/home/pankajsharma/terraform/keys/key-pair-01"
+  default = "./home/pankajsharma/terraform/keys/key-pair-01"
 
 }
 
@@ -21,7 +21,7 @@ variable "PUBLIC_KEY_PATH" {
   // default = "/home/pankajsharma/terraform/scripts/tf-vpc-subnet-ec2-nginx/key-pair.pub"
   // default = "/home/pankajsharma/terraform/scripts/tf-vpc-subnet-ec2-nginx/key-pair.pub"
 
-  default = "/home/pankajsharma/terraform/keys/key-pair-01.pub"
+  default = "./home/pankajsharma/terraform/keys/key-pair-01.pub"
 }
 
 variable "EC2_USER" {
