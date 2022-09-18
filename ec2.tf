@@ -55,7 +55,11 @@ resource "aws_key_pair" "key-pair-01" {
   key_name   = "key-pair-01"
 
   // public_key = file("${var.PUBLIC_KEY_PATH}")
-  // public_key = file("/home/pankajsharma/terraform/keys/key-pair-01.pub")
-  public_key = "key-pair-01.pub"
+  # It seems that the content of the key needs to be given, 
+  # not the path: public_key = "${file("${path.root}/terraform-keys2.pub")}" should work 
+  
+  # This works - public_key = "key-pair-01" // ie. the actual file name
+  
+  public_key = "/home/pankajsharma/terraform/keys/key-pair-01.pub"
 
 }
