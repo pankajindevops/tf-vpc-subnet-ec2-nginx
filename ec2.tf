@@ -44,7 +44,10 @@ resource "aws_instance" "ec2-instance" {
     host = self.public_ip
 
     user        = var.EC2_USER
-    private_key = file("${var.PRIVATE_KEY_PATH}")
+    //private_key = file("${var.PRIVATE_KEY_PATH}")
+    
+    private_key = file(var.PRIVATE_KEY_PATH)
+    
   }
 
 }
@@ -54,9 +57,12 @@ resource "aws_key_pair" "key-pair-01" {
 
   key_name   = "key-pair-01"
 
+  # Works fine on Local Terraform Execution but Fails from Jenkins
+  // public_key = file("${var.PUBLIC_KEY_PATH}")
+
   public_key = file(var.PUBLIC_KEY_PATH)
 
-  // public_key = file("${var.PUBLIC_KEY_PATH}")
+  
   # It seems that the content of the key needs to be given, 
   # not the path: public_key = "${file("${path.root}/terraform-keys2.pub")}" should work 
   
