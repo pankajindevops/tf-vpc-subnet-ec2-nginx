@@ -60,6 +60,7 @@ resource "aws_key_pair" "key-pair-01" {
   
   # This works - public_key = "key-pair-01" // ie. the actual file name
   
-  public_key = "/home/pankajsharma/terraform/keys/key-pair-01.pub"
+  // public_key = "/home/pankajsharma/terraform/keys/key-pair-01.pub"
+  public_key = "${file("/home/pankajsharma/terraform/keys/key-pair-01.pub")}"
 
 }
