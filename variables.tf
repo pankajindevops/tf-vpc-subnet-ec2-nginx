@@ -11,7 +11,7 @@ variable "PRIVATE_KEY_PATH" {
   // default = "/home/pankajsharma/terraform/scripts/tf-vpc-subnet-ec2-nginx/key-pair"
   //default = "/home/pankajsharma/terraform/scripts/tf-vpc-subnet-ec2-nginx/key-pair"
 
-  default = "./home/pankajsharma/terraform/keys/key-pair-01"
+  default = "/home/pankajsharma/terraform/keys/key-pair"
 
 }
 
@@ -21,7 +21,7 @@ variable "PUBLIC_KEY_PATH" {
   // default = "/home/pankajsharma/terraform/scripts/tf-vpc-subnet-ec2-nginx/key-pair.pub"
   // default = "/home/pankajsharma/terraform/scripts/tf-vpc-subnet-ec2-nginx/key-pair.pub"
 
-  default = "./home/pankajsharma/terraform/keys/key-pair-01.pub"
+  default = "/home/pankajsharma/terraform/keys/key-pair.pub"
 }
 
 variable "EC2_USER" {
@@ -40,9 +40,15 @@ variable "AMI" {
 
 variable "INSTANCE_TYPE" {
   default = "t2.micro"
+
+  validation {
+
+    condition     = can(regex("^[Tt][2-3].(micro|small)", var.INSTANCE_TYPE))
+    error_message = "Invalid EC2 Instance type name. You can only choose between - t2.micro OR t3.small"
+  }
 }
 
 variable "INSTANCE_COUNT" {
   default = 1
-}
 
+}

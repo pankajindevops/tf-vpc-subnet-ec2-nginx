@@ -12,7 +12,10 @@ resource "aws_instance" "ec2-instance" {
   vpc_security_group_ids = ["${aws_security_group.ssh-allowed.id}"]
 
   # the Public SSH Key
-  key_name = aws_key_pair.key-pair-01.id
+  #  key_name = aws_key_pair.key-pair-01.id
+
+  key_name = aws_key_pair.key-pair.key_name
+
 
   # Output the Public IP of EC2 Instance to text file
   provisioner "local-exec" {
@@ -43,35 +46,22 @@ resource "aws_instance" "ec2-instance" {
     type = "ssh"
     host = self.public_ip
 
-    user        = var.EC2_USER
-  
-    private_key = file("${var.PRIVATE_KEY_PATH}")
-    
-    // private_key = file(var.PRIVATE_KEY_PATH)
-    
-  }
+    user = var.EC2_USER
 
+    // private_key = file("${var.PRIVATE_KEY_PATH}")
+    private_key = file(var.PRIVATE_KEY_PATH)
+
+  }
 }
 
 # key-pair-01 & key_name = "key-pair-01" should Match the Actual Key Pair name
-resource "aws_key_pair" "key-pair-01" {
+resource "aws_key_pair" "key-pair" {
 
-  key_name   = "key-pair-01"
+  key_name = "key-pair"
 
   # Works fine on Local Terraform Execution but Fails from Jenkins
-   
-  public_key = file("${var.PUBLIC_KEY_PATH}")
 
-  // public_key = file(var.PUBLIC_KEY_PATH)
+  //public_key = file("${var.PUBLIC_KEY_PATH}")
+  public_key = file(var.PUBLIC_KEY_PATH)
 
-  
-  # It seems that the content of the key needs to be given, 
-  # not the path: public_key = "${file("${path.root}/terraform-keys2.pub")}" should work 
-  
-  # This works - public_key = "key-pair-01" // ie. the actual file name
-  
-  // public_key = "/home/pankajsharma/terraform/keys/key-pair-01.pub"
-  // public_key = "${file("/home/pankajsharma/terraform/keys/key-pair-01.pub")}"
-  
-  // public_key = "${file("${path.root}/key-pair-01.pub")}"
 }
